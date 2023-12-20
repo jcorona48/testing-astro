@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Counter from "@/components/Counter";
+---
+
+
+<Layout page="about" title="about">
+  <h1 transition:name="title">Hola mundo</h1>
+  <Counter client:load transition:persist transition:name="counter"/>
+</Layout>
+
+
+<style>
+
+</style>

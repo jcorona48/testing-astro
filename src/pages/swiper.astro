@@ -1,0 +1,12 @@
+---
+import SwiperRealize from "@/components/Swiper";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Swiper" page="Swiper">
+    <div class="w-full flex-1 dark:bg-slate-900 flex justify-center items-center">
+        <div class="w-96">
+            <SwiperRealize client:load></SwiperRealize>
+        </div>
+    </div>
+</Layout>

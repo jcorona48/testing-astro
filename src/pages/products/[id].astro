@@ -1,0 +1,36 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { products } from '@/config';
+const { id } = Astro.params
+
+const product = products.find(product => product.id === Number(id));
+---
+
+<Layout page=`Product ${id}` title='ProductPage'>
+
+    <h1>Product <span transition:name=`product-id ${product.id}` >{id}</span></h1>
+    
+   <span transition:name=`product-name ${product.id}`>
+        {product.name}
+   </span>
+
+   <span transition:name=`product-price ${product.id}`>
+        {product.price.toFixed(2)}
+   </span>
+
+</Layout>
+
+
+<style>
+    h1 {
+        color: red;
+    }
+
+    h1 span {
+        color: red;
+    }
+    
+    span {
+        color: white;
+    }
+</style>

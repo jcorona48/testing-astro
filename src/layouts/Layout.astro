@@ -1,0 +1,127 @@
+---
+interface Props {
+	title: string;
+	page: string;
+}
+
+const { title, page } = Astro.props;
+import {ToastContainer} from 'react-toastify'
+import Navbar from '@/components/Navbar.astro';
+import { ViewTransitions } from 'astro:transitions';
+import 'react-toastify/dist/ReactToastify.css';
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions fallback='none' /> 
+	</head>
+	<body>
+		<Navbar />
+		<main>
+			<h1>
+				{title} - {page}
+			</h1>
+			<slot />
+		</main>
+		<ToastContainer
+			position="bottom-right"
+			autoClose={3000}
+			hideProgressBar={false}
+			newestOnTop={false}
+			closeOnClick
+			rtl={false}
+			pauseOnFocusLoss
+			draggable
+			pauseOnHover
+			theme="dark"
+			client:visible transition:persist
+		/>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		background-size: 224px;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+	body{
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+	}
+	main {
+		display: flex;
+		width: 100%;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	h1 {
+		font-size: 2rem;
+		color: white;
+		margin: 0;
+	}
+
+
+	/* Crea estilos modernos para el scroll */
+	::-webkit-scrollbar {
+		width: 4px;
+		border-radius: 55px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: transparent;
+		border-radius: 55px;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #88888833;
+		border-radius: 55px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb:active {
+		background: #555;
+	}
+
+	/* Handle on hover */
+	
+</style>

@@ -1,0 +1,35 @@
+---
+import Card from "@/components/Card.astro";
+import Layout from "@/layouts/Layout.astro";
+import { products } from '@/config'
+---
+<Layout title="Product-List" page="Products" >
+    <h1 transition:name="title">Hola mundo</h1>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.map((product) => (
+                <Card>
+                    <a href={`/products/${product.id}`}>
+                         <span transition:name={`product-id ${product.id}`}>{product.id}</span> - 
+                         <span transition:name={`product-name ${product.id}`}>{product.name}</span> - 
+                         <span transition:name={`product-price ${product.id}`}>{product.price}</span> 
+                    </a>
+                </Card>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+
+<style>
+    a {
+        width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+    }
+</style>
