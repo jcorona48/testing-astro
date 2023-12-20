@@ -11,9 +11,13 @@ export const useSocket = (serverPath) => {
     );
 
     const [online, setOnline] = useState(false);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         setOnline(socket.connected);
+        socket.on("join", (data) => {
+            setUsers(data);
+        });
     }, [socket]);
 
     useEffect(() => {
@@ -31,5 +35,6 @@ export const useSocket = (serverPath) => {
     return {
         socket,
         online,
+        users,
     };
 };

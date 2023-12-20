@@ -6,12 +6,13 @@ import { useSocket } from "@/hooks/useSocket";
 import { PUBLIC_BACKEND_URL } from "@/config";
 
 const ChatContainer = () => {
-    const { socket, online } = useSocket(PUBLIC_BACKEND_URL);
+    const { socket, online, users } = useSocket(PUBLIC_BACKEND_URL);
 
     const [name, setName] = useState(null);
 
     useEffect(() => {
         const name = prompt("What is your name?");
+        socket.emit("join", { name });
         setName(name);
     }, []);
 
@@ -20,6 +21,25 @@ const ChatContainer = () => {
             {name ? (
                 <>
                     <h1>Chat - {name}</h1>{" "}
+                    <ul className="absolute top-1/2 left-0 m-4 text-white flex flex-col">
+                        {users
+                            .filter((user) => user.name !== name)
+                            .map((user) => {
+                                const isMe = user.name === name;
+                                return (
+                                    <li
+                                        key={user.id}
+                                        className={`${
+                                            isMe
+                                                ? "text-green-500"
+                                                : "text-blue-500"
+                                        }`}
+                                    >
+                                        {user.name}
+                                    </li>
+                                );
+                            })}
+                    </ul>
                     <ChatMessage client={{ socket, online }} />{" "}
                     <ChatForm client={{ socket, online }} name={name} />{" "}
                 </>
