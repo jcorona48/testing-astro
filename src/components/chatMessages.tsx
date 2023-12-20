@@ -49,11 +49,13 @@ const chatMessages = ({ client }) => {
                                 isMe
                                     ? `bg-gray-500 p-2 m-2 
                                     w-max
+                                    max-sm:max-w-[200px]
                                     max-w-[400px]
                                     rounded-lg`
                                     : `bg-purple-900 p-2 m-2 
                                     rounded-lg
                                     flex-wrap
+                                    max-sm:max-w-[200px]
                                     max-w-[400px]
                                     break-words
                                     `
