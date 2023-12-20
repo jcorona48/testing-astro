@@ -82,3 +82,5 @@ export const products = [
         price: 1000,
     },
 ];
+
+export const PUBLIC_BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;

@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import ChatForm from "@/components/chatForm";
 import ChatMessage from "@/components/chatMessages";
 import { useSocket } from "@/hooks/useSocket";
+import { PUBLIC_BACKEND_URL } from "@/config";
 
 const ChatContainer = () => {
-    const { socket, online } = useSocket("http://localhost:3000");
+    const { socket, online } = useSocket(PUBLIC_BACKEND_URL);
 
     const [name, setName] = useState(null);
 
